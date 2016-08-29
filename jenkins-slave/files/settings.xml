@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <mirrors>
+    <mirror>
+      <!-- This sends everything else to /public -->
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://nexus.interfront.local/nexus/content/groups/public-all</url>
+    </mirror>
+  </mirrors>
+  <profiles>
+    <profile>
+      <id>nexus</id>
+      <!-- Enable snapshots for the built in central repo to direct -->
+      <!-- all requests to nexus via the mirror -->
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <!-- Example for MySQL-->
+        <sonar.jdbc.url>jdbc:mysql://sonarqube.interfront.local:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
+        </sonar.jdbc.url>
+        <sonar.jdbc.username>sonar</sonar.jdbc.username>
+        <sonar.jdbc.password>sonar</sonar.jdbc.password>
+        <!-- Optional URL to server. Default value is http://localhost:9000 -->
+        <sonar.host.url>http://sonarqube.interfront.local
+        </sonar.host.url>
+      </properties>
+    </profile>    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <!-- Example for MySQL-->
+        <sonar.jdbc.url>jdbc:mysql://sonarqube.interfront.local:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
+        </sonar.jdbc.url>
+        <sonar.jdbc.username>sonar</sonar.jdbc.username>
+        <sonar.jdbc.password>sonar</sonar.jdbc.password>
+<!-- Optional URL to server. Default value is http://localhost:9000 -->
+<sonar.host.url>http://sonarqube.interfront.local
+</sonar.host.url>
+</properties>
+</profile>
+</profiles>
+
+<servers>
+    <server>
+      <id>nexus</id>
+      <!-- User-token: 3Viq0Ttt:NO+1RCBZOp87B2y5rqGa4gpikjx6j43YypDViWBlDDRp -->
+      <username>DlnDTMqi</username>
+      <password>AXOdpcMSloRfgN2BJW7li5+BaBNRrznQ682xIk4lHiGC</password>
+      <configuration>
+        <wagonProvider>httpclient</wagonProvider>
+      </configuration>
+    </server>
+    <server>
+      <id>releases</id>
+      <!-- User-token: 3Viq0Ttt:NO+1RCBZOp87B2y5rqGa4gpikjx6j43YypDViWBlDDRp -->
+      <username>DlnDTMqi</username>
+      <password>AXOdpcMSloRfgN2BJW7li5+BaBNRrznQ682xIk4lHiGC</password>
+      <configuration>
+        <wagonProvider>httpclient</wagonProvider>
+      </configuration>
+    </server>	
+    <server>
+      <id>snapshots</id>
+      <!-- User-token: 3Viq0Ttt:NO+1RCBZOp87B2y5rqGa4gpikjx6j43YypDViWBlDDRp -->
+      <username>DlnDTMqi</username>
+      <password>AXOdpcMSloRfgN2BJW7li5+BaBNRrznQ682xIk4lHiGC</password>
+      <configuration>
+        <wagonProvider>httpclient</wagonProvider>
+      </configuration>
+    </server>
+  </servers>
+  
+  <activeProfiles>
+    <!-- make the profile active all the time -->
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+  
+  <pluginGroups>
+    <!-- define the sonatype plugin group, so the nexus plugins will work without typing the groupId -->
+    <pluginGroup>org.sonatype.plugins</pluginGroup>
+    <pluginGroup>za.co.interfront.plugins</pluginGroup>
+  </pluginGroups>
+</settings>
